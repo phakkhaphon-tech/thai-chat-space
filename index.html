@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatZone - หาเพื่อนคุยสด</title>
+    <title>ThaiChat - แชทไทย หาเพื่อนคุย</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #ff4757; /* สีแดงสด แบบเว็บแชทคึกคัก */
-            --bg-color: #1e272e;      /* พื้นหลังสีเข้ม ถนอมสายตา */
+            --primary-color: #e74c3c; /* สีแดงเข้ม ให้ความรู้สึกกระตือรือร้น */
+            --accent-color: #3498db;  /* สีฟ้า เสริมความเป็นไทย (ธงชาติ) */
+            --bg-color: #1e272e;
             --card-bg: #2f3640;
             --text-color: #f1f2f6;
         }
@@ -17,7 +19,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Sarabun', sans-serif; /* แนะนำให้ใช้ Google Font ภาษาไทย */
+            font-family: 'Sarabun', sans-serif;
         }
 
         body {
@@ -27,121 +29,155 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1920x1080/?night,city');
+            /* เปลี่ยนภาพพื้นหลังให้ดูเป็นเมืองไทยยามค่ำคืน */
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://source.unsplash.com/random/1920x1080/?bangkok,night');
             background-size: cover;
             background-position: center;
         }
 
         .login-container {
             background-color: rgba(47, 54, 64, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
+            padding: 2.5rem;
+            border-radius: 20px;
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            max-width: 420px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
             text-align: center;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        .logo span { color: #fff; }
+        .logo span { 
+            color: var(--primary-color); 
+        }
+        
+        .logo i {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+        }
+
+        .tagline {
+            color: #bdc3c7;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
 
         .stat-box {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 20px;
+            margin-bottom: 25px;
             font-size: 0.9rem;
-            color: #bdc3c7;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 50px;
         }
 
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
         label {
             display: block;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #dfe4ea;
         }
 
-        input[type="text"], select {
+        input[type="text"] {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border: 2px solid #57606f;
             background: #dfe4ea;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
             outline: none;
-            transition: 0.3s;
+            transition: all 0.3s;
+            color: #2f3640;
         }
 
         input[type="text"]:focus {
-            border-color: var(--primary-color);
+            border-color: var(--accent-color);
             background: #fff;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2);
         }
 
         .gender-options {
             display: flex;
             gap: 10px;
-            margin-bottom: 15px;
         }
 
         .gender-btn {
             flex: 1;
-            padding: 10px;
-            border: 1px solid #57606f;
-            border-radius: 8px;
+            padding: 12px;
+            border: 2px solid #57606f;
+            border-radius: 12px;
             background: transparent;
-            color: #bdc3c7;
+            color: #a4b0be;
             cursor: pointer;
             transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .gender-btn:hover {
+            background: rgba(255,255,255,0.05);
         }
 
         .gender-btn.active {
-            background: var(--primary-color);
+            background: var(--accent-color);
             color: white;
-            border-color: var(--primary-color);
+            border-color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        /* สีเฉพาะเพศ */
+        .gender-btn[data-gender="female"].active {
+            background: #e056fd; /* สีชมพู */
+            border-color: #e056fd;
         }
 
         .options-toggle {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
-            background: rgba(0,0,0,0.2);
-            padding: 10px;
-            border-radius: 8px;
+            margin-bottom: 25px;
+            padding: 0 5px;
+            cursor: pointer;
         }
 
         .btn-enter {
             width: 100%;
-            padding: 15px;
-            background-color: var(--primary-color);
+            padding: 16px;
+            background: linear-gradient(45deg, var(--primary-color), #c0392b);
             color: white;
             border: none;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-enter:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.4);
         }
 
         .footer-text {
-            margin-top: 15px;
+            margin-top: 20px;
             font-size: 0.8rem;
             color: #7f8c8d;
         }
@@ -149,72 +185,78 @@
         /* Responsive Mobile */
         @media (max-width: 480px) {
             .login-container {
-                width: 90%;
-                padding: 1.5rem;
+                padding: 2rem;
+                width: 95%;
             }
+            .logo { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="login-container">
-        <div class="logo">Soi<span>Chat</span> <i class="fas fa-comments"></i></div>
+        <div class="logo">Thai<span>Chat</span> <i class="fas fa-comment-dots"></i></div>
+        <div class="tagline">ชุมชนออนไลน์ของคนไทย คุยสด เห็นหน้า</div>
         
         <div class="stat-box">
-            <span><i class="fas fa-user"></i> ออนไลน์: <strong id="user-count">1,240</strong></span>
-            <span><i class="fas fa-video"></i> กล้อง: <strong>580</strong></span>
+            <span><i class="fas fa-users" style="color: #2ecc71;"></i> ออนไลน์: <strong id="user-count">2,541</strong></span>
+            <span><i class="fas fa-video" style="color: #e74c3c;"></i> ไลฟ์: <strong>890</strong></span>
         </div>
 
         <form id="loginForm">
             <div class="input-group">
                 <label>ชื่อเล่นของคุณ</label>
-                <input type="text" id="username" placeholder="ใส่ชื่อเล่นเท่ๆ..." required maxlength="15">
+                <input type="text" id="username" placeholder="ระบุชื่อเล่น..." required maxlength="15" autocomplete="off">
             </div>
 
             <div class="input-group">
                 <label>เพศ</label>
                 <div class="gender-options">
-                    <button type="button" class="gender-btn active" onclick="selectGender(this, 'male')"><i class="fas fa-mars"></i> ชาย</button>
-                    <button type="button" class="gender-btn" onclick="selectGender(this, 'female')"><i class="fas fa-venus"></i> หญิง</button>
-                    <button type="button" class="gender-btn" onclick="selectGender(this, 'lgbt')"><i class="fas fa-transgender"></i> อื่นๆ</button>
+                    <button type="button" class="gender-btn active" data-gender="male" onclick="selectGender(this, 'male')"><i class="fas fa-mars"></i> ชาย</button>
+                    <button type="button" class="gender-btn" data-gender="female" onclick="selectGender(this, 'female')"><i class="fas fa-venus"></i> หญิง</button>
+                    <button type="button" class="gender-btn" data-gender="other" onclick="selectGender(this, 'other')"><i class="fas fa-genderless"></i> อื่นๆ</button>
                 </div>
                 <input type="hidden" id="selectedGender" value="male">
             </div>
 
-            <div class="options-toggle">
-                <span><i class="fas fa-camera"></i> เปิดกล้อง</span>
-                <input type="checkbox" id="cameraToggle">
+            <div class="options-toggle" onclick="toggleCamera()">
+                <label style="margin:0; cursor:pointer;"><i class="fas fa-camera"></i> เปิดใช้งานกล้องเว็บแคม</label>
+                <input type="checkbox" id="cameraToggle" style="width: 20px; height: 20px;">
             </div>
 
-            <button type="submit" class="btn-enter">เข้าสู่ห้องแชท</button>
+            <button type="submit" class="btn-enter">เข้าห้องแชท <i class="fas fa-sign-in-alt"></i></button>
         </form>
 
         <p class="footer-text">
-            การเข้าใช้งานถือว่ายอมรับข้อตกลงและเงื่อนไข<br>
-            © 2024 SoiChat Clone Project
+            &copy; 2025 ThaiChat. สงวนลิขสิทธิ์.<br>
+            ห้ามนำไปใช้ในทางที่ผิดกฎหมาย
         </p>
     </div>
 
     <script>
         // ฟังก์ชันเลือกเพศ
         function selectGender(btn, value) {
-            // ลบคลาส active จากปุ่มทั้งหมด
             document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
-            // เพิ่มคลาส active ให้ปุ่มที่กด
             btn.classList.add('active');
-            // อัปเดตค่าใน hidden input
             document.getElementById('selectedGender').value = value;
         }
 
-        // จำลองตัวเลขคนออนไลน์ให้ขยับได้ เพื่อความสมจริง
+        // ฟังก์ชัน Toggle Checkbox เมื่อกดที่ข้อความ
+        function toggleCamera() {
+            const cb = document.getElementById('cameraToggle');
+            cb.checked = !cb.checked;
+        }
+
+        // จำลองตัวเลขคนออนไลน์ (Fake Realtime)
         setInterval(() => {
             const countEl = document.getElementById('user-count');
             let current = parseInt(countEl.innerText.replace(',', ''));
-            let change = Math.floor(Math.random() * 5) - 2; // สุ่มเลข -2 ถึง +2
+            // สุ่มให้ตัวเลขขยับขึ้นลงแบบธรรมชาติ
+            let change = Math.floor(Math.random() * 10) - 4; 
             countEl.innerText = (current + change).toLocaleString();
-        }, 3000);
+        }, 2000);
 
-        // จัดการเมื่อกดปุ่มเข้าห้อง
+        // จัดการ Submit
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -222,17 +264,19 @@
             const gender = document.getElementById('selectedGender').value;
             const hasCamera = document.getElementById('cameraToggle').checked;
 
-            if(username.trim() === "") {
-                alert("กรุณาตั้งชื่อเล่นก่อนครับ");
-                return;
-            }
+            if(username.trim() === "") return;
 
-            // --- ตรงนี้คือจุดเชื่อมต่อกับ Backend ของคุณ ---
-            console.log("กำลังเข้าสู่ระบบ:", { username, gender, hasCamera });
-            
-            // ตัวอย่างการส่งค่าไปหน้าถัดไป หรือส่งไป Socket
-            // window.location.href = `/chat?user=${username}&gender=${gender}`;
-            alert(`ยินดีต้อนรับคุณ ${username}! กำลังเข้าสู่ห้องแชท...`);
+            // แสดง Feedback ให้ผู้ใช้รู้ว่าระบบกำลังทำงาน
+            const btn = document.querySelector('.btn-enter');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังเชื่อมต่อ...';
+            btn.style.opacity = "0.8";
+
+            // Simulating connection delay
+            setTimeout(() => {
+                alert(`ยินดีต้อนรับสู่ ThaiChat!\nชื่อ: ${username}\nเพศ: ${gender}\nกล้อง: ${hasCamera ? 'เปิด' : 'ปิด'}`);
+                // ตรงนี้ใส่โค้ดเปลี่ยนหน้า หรือ redirect
+                // window.location.href = '/chat-room';
+            }, 800);
         });
     </script>
 </body>
