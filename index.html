@@ -3,90 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ยินดีต้อนรับ | หน้าแรกของฉัน</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <title>ChatZone - หาเพื่อนคุยสด</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* --- ส่วนของ CSS (ตกแต่ง) --- */
+        :root {
+            --primary-color: #ff4757; /* สีแดงสด แบบเว็บแชทคึกคัก */
+            --bg-color: #1e272e;      /* พื้นหลังสีเข้ม ถนอมสายตา */
+            --card-bg: #2f3640;
+            --text-color: #f1f2f6;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        } 
+            font-family: 'Sarabun', sans-serif; /* แนะนำให้ใช้ Google Font ภาษาไทย */
+        }
 
         body {
-            /* ใช้ฟอนต์ Poppins สำหรับอังกฤษ และ Sarabun สำหรับไทย */
-            font-family: 'Poppins', 'Sarabun', sans-serif;
-            /* พื้นหลังไล่สี (Gradient) สวยๆ */
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh; /* ความสูงเต็มจอ */
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
-            justify-content: center; /* จัดกึ่งกลางแนวนอน */
-            align-items: center; /* จัดกึ่งกลางแนวตั้ง */
-            color: white;
-            padding: 20px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1920x1080/?night,city');
+            background-size: cover;
+            background-position: center;
         }
 
-        /* กล่องข้อความตรงกลาง (Glassmorphism Effect) */
-        .glass-container {
-            background: rgba(255, 255, 255, 0.1); /* สีขาวโปร่งแสง */
-            backdrop-filter: blur(10px); /* เอฟเฟกต์กระจกฝ้า เบลอฉากหลัง */
-            border-radius: 20px; /* มุมโค้ง */
-            padding: 50px;
-            text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* เงาฟุ้งๆ */
-            border: 1px solid rgba(255, 255, 255, 0.18); /* ขอบขาวบางๆ */
-            max-width: 600px;
+        .login-container {
+            background-color: rgba(47, 54, 64, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
             width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            text-align: center;
+            backdrop-filter: blur(5px);
         }
 
-        h1 {
-            font-size: 3em;
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo span { color: #fff; }
+
+        .stat-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+
+        .input-group {
             margin-bottom: 15px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-align: left;
         }
 
-        p {
-            font-size: 1.2em;
-            margin-bottom: 35px;
-            color: #e0e0e0; /* สีเทาอ่อน */
-            line-height: 1.6;
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
         }
 
-        /* ปุ่มกด */
-        .btn-start {
-            display: inline-block;
-            padding: 12px 35px;
-            background-color: #ff6b6b; /* สีปุ่ม (สีส้มแดง) */
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #57606f;
+            background: #dfe4ea;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary-color);
+            background: #fff;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .gender-btn {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #57606f;
+            border-radius: 8px;
+            background: transparent;
+            color: #bdc3c7;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .gender-btn.active {
+            background: var(--primary-color);
             color: white;
-            text-decoration: none; /* เอาเส้นใต้ลิงก์ออก */
-            border-radius: 30px; /* ปุ่มกลมมน */
-            font-weight: 700;
-            letter-spacing: 1px;
-            transition: all 0.3s ease; /* เอฟเฟกต์สมูทเวลาเอาเมาส์ชี้ */
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            border-color: var(--primary-color);
         }
 
-        /* เมื่อเอาเมาส์ไปชี้ที่ปุ่ม (Hover) */
-        .btn-start:hover {
-            background-color: #ff4757;
-            transform: translateY(-3px); /* ลอยขึ้นนิดนึง */
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        .options-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 8px;
         }
-        
-        /* ปรับให้สวยบนมือถือ */
+
+        .btn-enter {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-enter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        .footer-text {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        /* Responsive Mobile */
         @media (max-width: 480px) {
-            h1 { font-size: 2em; }
-            p { font-size: 1em; }
-            .glass-container { padding: 30px 20px; }
+            .login-container {
+                width: 90%;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="glass-container">
-        <h1>สวัสดี ชาวโลก! 🚀</h1>
-        <p>ยินดีต้อนรับสู่เว็บไซต์แรกของฉัน<br>ที่สร้างขึ้นด้วย VS Code และอัปโหลดผ่าน Git<br>มันอาจจะยังดูเรียบง่าย แต่เป็นจุดเริ่มต้นที่ยิ่งใหญ่!</p>
-        <a href="#" class="btn-start">เริ่มต้นใช้งาน</a>
+
+    <div class="login-container">
+        <div class="logo">Soi<span>Chat</span> <i class="fas fa-comments"></i></div>
+        
+        <div class="stat-box">
+            <span><i class="fas fa-user"></i> ออนไลน์: <strong id="user-count">1,240</strong></span>
+            <span><i class="fas fa-video"></i> กล้อง: <strong>580</strong></span>
+        </div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label>ชื่อเล่นของคุณ</label>
+                <input type="text" id="username" placeholder="ใส่ชื่อเล่นเท่ๆ..." required maxlength="15">
+            </div>
+
+            <div class="input-group">
+                <label>เพศ</label>
+                <div class="gender-options">
+                    <button type="button" class="gender-btn active" onclick="selectGender(this, 'male')"><i class="fas fa-mars"></i> ชาย</button>
+                    <button type="button" class="gender-btn" onclick="selectGender(this, 'female')"><i class="fas fa-venus"></i> หญิง</button>
+                    <button type="button" class="gender-btn" onclick="selectGender(this, 'lgbt')"><i class="fas fa-transgender"></i> อื่นๆ</button>
+                </div>
+                <input type="hidden" id="selectedGender" value="male">
+            </div>
+
+            <div class="options-toggle">
+                <span><i class="fas fa-camera"></i> เปิดกล้อง</span>
+                <input type="checkbox" id="cameraToggle">
+            </div>
+
+            <button type="submit" class="btn-enter">เข้าสู่ห้องแชท</button>
+        </form>
+
+        <p class="footer-text">
+            การเข้าใช้งานถือว่ายอมรับข้อตกลงและเงื่อนไข<br>
+            © 2024 SoiChat Clone Project
+        </p>
     </div>
+
+    <script>
+        // ฟังก์ชันเลือกเพศ
+        function selectGender(btn, value) {
+            // ลบคลาส active จากปุ่มทั้งหมด
+            document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+            // เพิ่มคลาส active ให้ปุ่มที่กด
+            btn.classList.add('active');
+            // อัปเดตค่าใน hidden input
+            document.getElementById('selectedGender').value = value;
+        }
+
+        // จำลองตัวเลขคนออนไลน์ให้ขยับได้ เพื่อความสมจริง
+        setInterval(() => {
+            const countEl = document.getElementById('user-count');
+            let current = parseInt(countEl.innerText.replace(',', ''));
+            let change = Math.floor(Math.random() * 5) - 2; // สุ่มเลข -2 ถึง +2
+            countEl.innerText = (current + change).toLocaleString();
+        }, 3000);
+
+        // จัดการเมื่อกดปุ่มเข้าห้อง
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const gender = document.getElementById('selectedGender').value;
+            const hasCamera = document.getElementById('cameraToggle').checked;
+
+            if(username.trim() === "") {
+                alert("กรุณาตั้งชื่อเล่นก่อนครับ");
+                return;
+            }
+
+            // --- ตรงนี้คือจุดเชื่อมต่อกับ Backend ของคุณ ---
+            console.log("กำลังเข้าสู่ระบบ:", { username, gender, hasCamera });
+            
+            // ตัวอย่างการส่งค่าไปหน้าถัดไป หรือส่งไป Socket
+            // window.location.href = `/chat?user=${username}&gender=${gender}`;
+            alert(`ยินดีต้อนรับคุณ ${username}! กำลังเข้าสู่ห้องแชท...`);
+        });
+    </script>
 </body>
 </html>
